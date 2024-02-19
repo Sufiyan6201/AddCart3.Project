@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add To Cart</title>
+    <!-- Our Aos -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <!-- google font -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,800;0,900;1,100;1,200;1,300;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,800;0,900;1,100;1,200;1,300;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;0,6..12,800;0,6..12,900;0,6..12,1000;1,6..12,200;1,6..12,300;1,6..12,400;1,6..12,500;1,6..12,600;1,6..12,700;1,6..12,800;1,6..12,900;1,6..12,1000&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,800;0,900;1,100;1,200;1,300;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- fontawsome -->
+    <link rel="stylesheet" href="asset/css/fontawesome.min.css">
+    <link rel="stylesheet" href="asset/css/all.min.css">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="asset/css/bootstrap.min.css">
+    <!-- css -->
+    <link rel="stylesheet" href="asset/css/styl.css">
+</head>
+
+<body>
+
+    <header id="header">
+
+    </header>
+    <div class="container">
+        <div class="row " id="cart-list">
+            <div class="col-12 mx-auto ">
+                <center>
+                    <h1 class="display-1 ">This Is Cart</h1>
+                    <table border="1">
+                        <thead>
+                            <tr class="border-bottom">
+                                <th class="p-5">Image</th>
+                                <th class="p-5">Name</th>
+                                <th class="p-5">Quantity</th>
+                                <th class="p-5">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="addCart">
+                            <!-- <tr>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </center>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- bootstrap js -->
+    <script src="asset/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <!-- AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+    <!-- main.js -->
+    <script src="asset/js/main.js"></script>
+    <!-- <script src="asset/js/cart.js"></script> -->
+</body>
+
+</html>
+<script>
+    let demo = JSON.parse(localStorage.getItem("shoppingCart"))
+    var tr = "";
+    demo.forEach(cartProduct => {
+        tr += `<tr>
+                                <td><img src="${cartProduct.img}" style= "width:20px height:20px " class="p-2 object-fit-md-contain " alt=""></td>
+                                <td class="fw-bold text-center ">${cartProduct.name}</td>
+                                <td class="fw-bold text-center ">${cartProduct.price}</td>
+                                <td class="fw-bold text-center ">${cartProduct.qnty}</td>
+                            </tr>`;
+    });
+    document.getElementById("addCart").innerHTML = tr ;
+
+    function count(){
+        let demo = JSON.parse(localStorage.getItem("shoppingCart"))
+        document.getElementById("count").innerHTML=demo.length;
+    }
+    count()
+   
+    // function addToCart(id) {
+    //     var name = document.getElementById('pName' + id).innerText;
+    //     var price = document.getElementById('pPrice' + id).value;
+    //     // console.log(price);
+
+    //     var img = document.getElementById('img0').src;
+    //     var qnty = document.getElementById('qty' + id).value;
+    //     console.log(qnty);
+    //     var product = {
+    //         'name': name,
+    //         'price': price,
+    //         'image': img,
+    //         'qnty': qnty
+    //     }
+    //     if (localStorage.getItem("shoppingCart") == null) {
+    //         var products = [];
+    //         products.push(product);
+    //         localStorage.setItem("shoppingCart", JSON.stringify(products));
+    //     } else {
+    //         var products = JSON.parse(localStorage.getItem("shoppingCart"));
+    //         var exist = false;
+    //         for (var i = 0; i < products.length; i++) {
+    //             if (products[i].name === name && products[i].price === price) {
+    //                 products[i].qnty = parseInt(products[i].qnty) + parseInt(qntly);
+    //                 exist = true;
+    //                 break;
+    //             }
+    //         }
+    //         if (!exist) {
+    //             products.push(product);
+    //         }
+    //         localStorage.setItem("shoppingCart", JSON.stringify(products))
+    //     }
+    //     showCart();
+    // }
+
+</script>
+<!-- function AddCart(i){
+    var count= document.querySelectorAll('.fa-solid fa-cart-plus')[1].nextElementSibling.innerText;
+    
+    if (isInArray(i)) {
+        
+        alert("This item is already in your cart");
+    } else {
+        var card = document.getElementsByClassName('col-md-3')[i];
+        var clone = card.cloneNode(true);
+        document.getElementById('shopping_cart').appendChild(clone);
+        document.querySelectorAll(".fa-solid fa-trash")[count -  1].addEventListener('click', function () { deleteItem(this) });
+        console.log(count);
+        document.querySelectorAll('.fa-solid fa-trash')[count - 1].addEventListener('click', function () {
+            removeItemFromCard(this , i );
+        });
+        updateCount();
+    }
+};
+
+function removeItemFromCard(element , i ){
+    element.parentElement.parentElement.parentElement.remove();
+    products.splice(i , 1);
+    updateLocalStorage();
+    updateCount();
+}
+
+//update local storage when add to cart button clicked
+function updateLocalStorage(){
+    localStorage.setItem('product' , JSON.stringify(products));
+}
+
+//checking whether the given number is in array or not
+function isInArray(num) {
+    return products.indexOf(num) != -1 ;
+}
+
+function updateCount() {
+    var sum = 0;
+    for (let i = 0; i < products.length; i++) {
+        sum += Number(document.getElementsByClassName('card')[i].style.display !== 'none');
+    }
+    document.querySelectorAll('.fa-solid fa-cart')[0].nextElementSibling.innerHTML = sum;
+} -->
